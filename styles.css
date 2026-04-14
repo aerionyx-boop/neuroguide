@@ -40,27 +40,29 @@ body {
   overflow: hidden;
 }
 
+/* Главные кнопки - теперь все одинаковой ширины */
 .btn-main {
-  margin: 0 10px;
+  display: block;
+  width: calc(100% - 20px);  /* Растягиваем на всю доступную ширину с учетом margin */
+  max-width: 380px;          /* Максимальная ширина */
+  margin: 0 auto 10px auto;  /* Центрируем */
   padding: 10px 5px;
   border: 5px outset #ccc;
   background: #f0f0f0;
   cursor: pointer;
   font-size: 14px;
+  text-align: center;
 }
 
 .btn-main:first-of-type {
   margin-top: 200px;
 }
 
-.btn-main + .btn-main {
-  margin-top: 10px;
-}
-
 .btn-main:last-of-type {
   margin-bottom: 10px;
 }
 
+/* Кнопка назад - не трогаем, оставляем как есть */
 .btn-back {
   padding: 6px 12px;
   border: 3px outset #ccc;
@@ -68,10 +70,16 @@ body {
   color: black;
   cursor: pointer;
   font-size: 14px;
+  display: inline-block;
+  width: auto;
 }
 
+/* Кнопки разделов - теперь все одинаковой ширины */
 .btn-section {
-  margin: 20px 10px;
+  display: block;
+  width: calc(100% - 20px);  /* Растягиваем на всю доступную ширину с учетом margin */
+  max-width: 380px;          /* Максимальная ширина */
+  margin: 10px auto;         /* Центрируем */
   padding: 10px 5px;
   border: 3px outset #ccc;
   background: #f0f0f0;
@@ -85,20 +93,26 @@ body {
   flex: 1;
   overflow-y: auto;
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Центрируем все дочерние элементы */
 }
 
 .title-block {
-  margin: 10px;
+  width: calc(100% - 20px);
+  margin: 10px auto;
   padding: 10px;
   border: 2px solid #999;
   background: lightyellow;
   font-size: 14px;
   font-weight: bold;
   min-height: 2.5em;
+  text-align: center;
 }
 
 .text-block {
-  margin: 10px;
+  width: calc(100% - 20px);
+  margin: 10px auto;
   padding: 10px;
   border: 2px solid #999;
   background: white;
