@@ -377,7 +377,7 @@ class NeuroGuide {
     const b = document.createElement("button");
     b.type = "button";
     b.className = "btn-back";
-    b.textContent = "Назад";
+    b.textContent = "←";
     b.addEventListener("click", onClick);
     return b;
   }
@@ -456,7 +456,7 @@ class NeuroGuide {
     const backTop = document.createElement("button");
     backTop.type = "button";
     backTop.className = "btn-back";
-    backTop.textContent = "← Назад";
+    backTop.textContent = "←";
     backTop.style.fontSize = "10px";
     backTop.style.fontWeight = "bold";
     backTop.addEventListener("click", () => this.showMainScreen());
@@ -533,7 +533,7 @@ class NeuroGuide {
     const backTop = document.createElement("button");
     backTop.type = "button";
     backTop.className = "btn-back";
-    backTop.textContent = "← Назад";
+    backTop.textContent = "←";
     backTop.style.fontSize = "10px";
     backTop.style.fontWeight = "bold";
     backTop.addEventListener("click", () => this.showInvestmentTypes());
@@ -595,7 +595,7 @@ class NeuroGuide {
     const backTop = document.createElement("button");
     backTop.type = "button";
     backTop.className = "btn-back";
-    backTop.textContent = "← Назад";
+    backTop.textContent = "←";
     backTop.style.fontSize = "10px";
     backTop.style.fontWeight = "bold";
     backTop.addEventListener("click", () => this.showInvestmentMethods());
