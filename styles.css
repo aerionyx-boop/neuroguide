@@ -30,13 +30,11 @@ body {
   touch-action: pan-y pinch-zoom;
 }
 
-/* Учет выреза на iPhone (Dynamic Island/Notch) */
+/* Учитываем безопасные зоны на iPhone */
 @supports (padding: max(0px)) {
   .app {
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
   }
 }
 
@@ -52,216 +50,130 @@ body {
   user-drag: none;
 }
 
-/* Затемнение фона для читаемости текста */
-.background::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 1;
-}
-
 .background.is-hidden {
   display: none;
 }
 
 .main {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-/* ===== КНОПКИ ===== */
-
-/* Главные кнопки меню - центрированы */
+/* Главные кнопки - теперь все одинаковой ширины */
 .btn-main {
   display: block;
   width: calc(100% - 40px);
-  max-width: 300px;
-  margin: 0 auto 15px auto;
-  padding: 14px 5px;
-  border: none;
-  border-radius: 30px;
-  background: #1e4d3a;
-  color: white;
+  max-width: 380px;
+  margin: 0 auto 10px auto;
+  padding: 12px 5px;
+  border: 5px outset #ccc;
+  background: #f0f0f0;
   cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
   text-align: center;
   touch-action: manipulation;
-  transition: transform 0.2s, background 0.2s;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.btn-main:active {
-  transform: scale(0.97);
-  background: #0f3527;
 }
 
 .btn-main:first-of-type {
-  margin-top: calc(25vh - 50px);
+  margin-top: calc(20vh);
 }
 
 .btn-main:last-of-type {
   margin-bottom: 20px;
 }
 
-/* Кнопки разделов - центрированы */
+/* Кнопка назад - не трогаем, оставляем как есть */
+.btn-back {
+  padding: 8px 16px;
+  border: 3px outset #ccc;
+  background: lightgrey;
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-block;
+  width: auto;
+  touch-action: manipulation;
+}
+
+/* Кнопки разделов - теперь все одинаковой ширины */
 .btn-section {
   display: block;
   width: calc(100% - 40px);
-  max-width: 350px;
+  max-width: 380px;
   margin: 10px auto;
   padding: 12px 5px;
-  border: none;
-  border-radius: 25px;
-  background: #2c5f4a;
-  color: white;
+  border: 3px outset #ccc;
+  background: #f0f0f0;
   cursor: pointer;
   font-size: 14px;
-  font-weight: bold;
   text-align: center;
   white-space: pre-line;
   touch-action: manipulation;
-  transition: transform 0.2s, background 0.2s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-
-.btn-section:active {
-  transform: scale(0.97);
-  background: #1e4536;
-}
-
-/* ===== КНОПКА НАЗАД СВЕРХУ СЛЕВА ===== */
-.back-button-container {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 100;
-  display: none;
-}
-
-.back-button-container.visible {
-  display: block;
-}
-
-.btn-back-top {
-  padding: 8px 18px;
-  border: none;
-  border-radius: 30px;
-  background: #6c4b2c;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  touch-action: manipulation;
-  transition: transform 0.2s, background 0.2s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(4px);
-}
-
-.btn-back-top:active {
-  transform: scale(0.95);
-  background: #5a3a1f;
-}
-
-/* ===== СТАРЫЕ СТИЛИ ДЛЯ КНОПКИ НАЗАД (для совместимости) ===== */
-.btn-back {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 25px;
-  background: #6c4b2c;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
-  touch-action: manipulation;
-  transition: transform 0.2s, background 0.2s;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.btn-back:active {
-  transform: scale(0.95);
-  background: #5a3a1f;
-}
-
-/* Специальный стиль для кнопки назад на экране практики */
-.practice-header .btn-back {
-  position: static;
-  margin: 0;
-  padding: 6px 14px;
-  font-size: 12px;
-}
-
-/* ===== КОНТЕЙНЕРЫ ===== */
 
 .screen-scroll {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 20px 10px 20px 10px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Убираем лишние линии */
 .title-block {
   width: calc(100% - 40px);
-  max-width: 400px;
   margin: 10px auto;
   padding: 12px;
-  border: none;
-  border-radius: 15px;
-  background: rgba(255, 255, 200, 0.95);
+  border: 2px solid #999;
+  background: lightyellow;
   font-size: 14px;
   font-weight: bold;
   min-height: 2.5em;
   text-align: center;
   user-select: text;
   -webkit-user-select: text;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .text-block {
   width: calc(100% - 40px);
-  max-width: 400px;
   margin: 10px auto;
   padding: 12px;
-  border: none;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #999;
+  background: white;
   font-size: 13px;
   white-space: pre-wrap;
-  max-height: 55vh;
+  max-height: 60vh;
   overflow-y: auto;
   overflow-x: hidden;
   user-select: text;
   -webkit-user-select: text;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .back-row {
-  display: none; /* Скрываем старую строку с кнопкой назад */
+  padding: 10px;
+  display: flex;
+  justify-content: center;
 }
 
-/* ===== ЭКРАН ПРАКТИКИ ===== */
-
+/* Практика */
 .practice-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 12px 16px;
-  background: rgba(173, 216, 230, 0.95);
-  position: relative;
-  z-index: 5;
+  padding: 12px;
+  gap: 10px;
+  background: lightblue;
+}
+
+.practice-header .btn-back {
+  font-weight: bold;
+  font-size: 12px;
+  flex-shrink: 0;
 }
 
 .practice-title {
@@ -274,88 +186,68 @@ body {
 }
 
 .practice-spacer {
-  width: 70px;
+  width: 60px;
   flex-shrink: 0;
 }
 
 .practice-container {
   flex: 1;
-  margin: 8px;
-  background: rgba(255, 255, 255, 0.95);
+  margin: 5px;
+  background: white;
   overflow-y: auto;
   overflow-x: hidden;
-  border: none;
-  border-radius: 15px;
+  border: 1px solid #ccc;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Карточки заданий */
 .task-card {
-  margin: 12px auto;
-  width: calc(100% - 24px);
-  max-width: 400px;
-  border: none;
-  border-radius: 15px;
+  margin: 10px;
+  border: 2px solid #333;
   background: white;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .task-title {
-  background: #2c5f4a;
-  padding: 10px 15px;
+  background: lightblue;
+  padding: 8px 12px;
   font-size: 13px;
   font-weight: bold;
   text-align: left;
-  color: white;
   user-select: none;
 }
 
 .task-body {
-  margin: 12px;
+  margin: 8px 12px;
   padding: 10px;
-  background: #f5f5f5;
+  background: #f0f0f0;
   font-size: 12px;
   white-space: pre-wrap;
   min-height: 8em;
-  border-radius: 10px;
   user-select: text;
   -webkit-user-select: text;
 }
 
 .answer-row {
-  padding: 5px 12px 10px;
-  display: flex;
-  justify-content: flex-end;
+  padding: 8px 12px;
 }
 
 .btn-toggle {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 20px;
-  background: #6c4b2c;
-  color: white;
+  padding: 8px 12px;
+  border: 2px outset #ccc;
+  background: lightgrey;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 13px;
   touch-action: manipulation;
-  transition: background 0.2s;
-}
-
-.btn-toggle:active {
-  background: #5a3a1f;
 }
 
 .btn-toggle.is-open {
-  background: #4a7a5a;
+  background: #90ee90;
 }
 
 .answer-body {
-  margin: 5px 12px 15px;
+  margin: 5px 12px 12px;
   padding: 10px;
-  border: none;
-  border-radius: 10px;
-  background: #e8f5e8;
+  border: 1px solid #666;
+  background: #e8f4e8;
   font-size: 12px;
   white-space: pre-wrap;
   display: none;
@@ -367,46 +259,13 @@ body {
   display: block;
 }
 
-/* Убираем разделители */
 .separator {
-  display: none;
+  height: 2px;
+  background: gray;
+  margin: 10px;
 }
 
-/* ===== ДОПОЛНИТЕЛЬНО ===== */
-
-/* Убираем полосы прокрутки на WebKit (но оставляем возможность скролла) */
-.screen-scroll::-webkit-scrollbar,
-.practice-container::-webkit-scrollbar,
-.text-block::-webkit-scrollbar {
-  width: 4px;
-}
-
-.screen-scroll::-webkit-scrollbar-track,
-.practice-container::-webkit-scrollbar-track,
-.text-block::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-}
-
-.screen-scroll::-webkit-scrollbar-thumb,
-.practice-container::-webkit-scrollbar-thumb,
-.text-block::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-}
-
-/* Для iPhone с вырезом - дополнительная защита */
-@supports (padding: max(0px)) {
-  .back-button-container {
-    top: max(16px, env(safe-area-inset-top));
-    left: max(16px, env(safe-area-inset-left));
-  }
-  
-  .practice-header {
-    padding-top: max(12px, env(safe-area-inset-top));
-  }
-}
-
+/* Дополнительная блокировка */
 input, textarea, button {
   touch-action: manipulation;
 }
@@ -414,32 +273,22 @@ input, textarea, button {
 img {
   -webkit-user-drag: none;
   user-drag: none;
+  pointer-events: none;
 }
 
 body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* Центрирование контента на экране практики */
-.practice-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Центрирование заголовка на экране практики */
-.practice-header {
-  position: relative;
-}
-
-/* Убираем лишний отступ у контейнера с кнопкой назад */
-.back-button-container {
-  position: fixed;
-}
-
-/* Делаем кнопку назад более заметной */
-.btn-back-top {
-  background: #6c4b2c;
-  font-size: 14px;
-  letter-spacing: 0.5px;
+/* Адаптация для планшетов и больших экранов */
+@media (min-width: 768px) {
+  .app {
+    max-width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .btn-main, .btn-section {
+    max-width: 400px;
+  }
 }
