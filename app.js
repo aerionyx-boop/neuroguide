@@ -191,8 +191,39 @@ class NeuroGuide {
     this.mainEl.replaceChildren();
   }
 
+  // Удаляем старую кнопку назад из DOM
+  removeBackButton() {
+    const existingContainer = document.querySelector('.back-button-container');
+    if (existingContainer) {
+      existingContainer.remove();
+    }
+  }
+
+  // Создаем кнопку назад сверху слева
+  createBackButtonTop(onClick) {
+    this.removeBackButton();
+    
+    const container = document.createElement('div');
+    container.className = 'back-button-container';
+    
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn-back-top';
+    btn.textContent = '← Назад';
+    btn.addEventListener('click', () => {
+      this.removeBackButton();
+      onClick();
+    });
+    
+    container.appendChild(btn);
+    document.querySelector('.app').appendChild(container);
+    return btn;
+  }
+
   showMainScreen() {
     this.clearMain();
+    this.removeBackButton(); // Убираем кнопку назад на главном экране
+    
     const mkBtn = (text, onClick) => {
       const b = document.createElement("button");
       b.type = "button";
@@ -212,6 +243,7 @@ class NeuroGuide {
     );
   }
 
+  // Старый createBackButton больше не используем, но оставим для совместимости
   createBackButton(onClick) {
     const b = document.createElement("button");
     b.type = "button";
@@ -223,6 +255,8 @@ class NeuroGuide {
 
   showInvestmentTypes() {
     this.clearMain();
+    this.createBackButtonTop(() => this.showMainScreen());
+    
     const scroll = document.createElement("div");
     scroll.className = "screen-scroll";
 
@@ -244,16 +278,13 @@ class NeuroGuide {
       scroll.appendChild(btn);
     });
 
-    const backRow = document.createElement("div");
-    backRow.className = "back-row";
-    backRow.appendChild(this.createBackButton(() => this.showMainScreen()));
-
     this.mainEl.appendChild(scroll);
-    this.mainEl.appendChild(backRow);
   }
 
   showInvestmentMethods() {
     this.clearMain();
+    this.createBackButtonTop(() => this.showMainScreen());
+    
     const scroll = document.createElement("div");
     scroll.className = "screen-scroll";
 
@@ -272,27 +303,15 @@ class NeuroGuide {
       scroll.appendChild(btn);
     });
 
-    const backRow = document.createElement("div");
-    backRow.className = "back-row";
-    backRow.appendChild(this.createBackButton(() => this.showMainScreen()));
-
     this.mainEl.appendChild(scroll);
-    this.mainEl.appendChild(backRow);
   }
 
   showPracticTask() {
     this.clearMain();
+    this.createBackButtonTop(() => this.showMainScreen());
 
     const header = document.createElement("header");
     header.className = "practice-header";
-
-    const backTop = document.createElement("button");
-    backTop.type = "button";
-    backTop.className = "btn-back";
-    backTop.textContent = "← Назад";
-    backTop.style.fontSize = "10px";
-    backTop.style.fontWeight = "bold";
-    backTop.addEventListener("click", () => this.showMainScreen());
 
     const title = document.createElement("h1");
     title.className = "practice-title";
@@ -302,7 +321,6 @@ class NeuroGuide {
     spacer.className = "practice-spacer";
     spacer.setAttribute("aria-hidden", "true");
 
-    header.appendChild(backTop);
     header.appendChild(title);
     header.appendChild(spacer);
 
@@ -360,6 +378,8 @@ class NeuroGuide {
     const title = category ? category.title : "Раздел не найден";
 
     this.clearMain();
+    this.createBackButtonTop(() => this.showInvestmentTypes());
+    
     const scroll = document.createElement("div");
     scroll.className = "screen-scroll";
 
@@ -376,16 +396,8 @@ class NeuroGuide {
       textBlock.textContent = lines;
     }
 
-    const backRow = document.createElement("div");
-    backRow.className = "back-row";
-    const pad = document.createElement("div");
-    pad.style.padding = "0 100px";
-    pad.appendChild(this.createBackButton(() => this.showInvestmentTypes()));
-    backRow.appendChild(pad);
-
     scroll.appendChild(titleBlock);
     scroll.appendChild(textBlock);
-    scroll.appendChild(backRow);
     this.mainEl.appendChild(scroll);
   }
 
@@ -394,6 +406,8 @@ class NeuroGuide {
     const title = category ? category.title : "Раздел не найден";
 
     this.clearMain();
+    this.createBackButtonTop(() => this.showInvestmentMethods());
+    
     const scroll = document.createElement("div");
     scroll.className = "screen-scroll";
 
@@ -409,16 +423,8 @@ class NeuroGuide {
         .join("\n\n");
     }
 
-    const backRow = document.createElement("div");
-    backRow.className = "back-row";
-    const pad = document.createElement("div");
-    pad.style.padding = "0 100px";
-    pad.appendChild(this.createBackButton(() => this.showInvestmentMethods()));
-    backRow.appendChild(pad);
-
     scroll.appendChild(titleBlock);
     scroll.appendChild(textBlock);
-    scroll.appendChild(backRow);
     this.mainEl.appendChild(scroll);
   }
 }
