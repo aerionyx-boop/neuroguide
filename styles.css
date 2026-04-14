@@ -136,6 +136,37 @@ body {
   background: #1e4536;
 }
 
+/* ===== КНОПКА НАЗАД ===== */
+/* Кнопка назад - в стиле остальных кнопок */
+.btn-back {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;        /* скругление как у btn-section */
+  background: #2c5f4a;        /* зелёный фон как у btn-section */
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  touch-action: manipulation;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-back:active {
+  transform: scale(0.97);
+  background: #1e4536;        /* тёмно-зелёный при нажатии */
+}
+
+/* Контейнер для центрирования кнопки */
+.back-row {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
 /* ===== КОНТЕЙНЕРЫ ===== */
 .screen-scroll {
   flex: 1;
