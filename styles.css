@@ -176,7 +176,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 15px; 
   -webkit-overflow-scrolling: touch;
+}
+
+/* Убираем лишние отступы у кнопок */
+.btn-section {
+  width: calc(100% - 40px);
+  max-width: 380px;
+  margin: 0;  /* ← Убираем margin, т.к. gap управляет расстоянием */
+  padding: 12px 5px;
+  /* остальные стили без изменений */
 }
 
 .title-block {
