@@ -186,14 +186,18 @@ body {
 
 /* ===== КНОПКА НАЗАД ===== */
 .btn-back {
-  display: inline-block;
-  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
   border: none;
-  border-radius: 25px;
+  border-radius: 12px;
   background: #2c5f4a;
   color: white;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   touch-action: manipulation;
@@ -320,11 +324,12 @@ body {
 }
 
 .section-header .practice-title {
-  position: static;
-  transform: none;
-  flex: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 120px);
   text-align: center;
-  margin: 0 8px;
+  margin: 0;
   font-size: 14px;
   line-height: 1.25;
   white-space: normal;
@@ -352,7 +357,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  background: rgba(173, 216, 230, 0.95);
+  background: rgba(173, 216, 230, 0.8);
   position: relative;
   z-index: 5;
 }
